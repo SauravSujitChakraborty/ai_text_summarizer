@@ -25,6 +25,6 @@ $\text{Score}(S) = \sum_{w \in S} \text{Normalized Weight}(w)$
 *Heuristic Constraint: I have includesld a length filter (len(sent.split(' ')) < 30). This is a "Heuristic" to prevent the model from biasedly picking extremely long sentences just because they contain more words.
 
 4. Selection via Priority Queue
-To extract the top N sentences without sorting the entire list (which is computationally expensive for large documents), the code uses a Heap Queue (heapq). This is an efficient $O(n \log k)$ operation to find the "largest" elements, making the code scalable for longer articles.
+To extract the top N sentences without sorting the entire list (which is computationally expensive for large documents), the code uses a Heap Queue (heapq). This is an efficient $O(n\logk)$ operation to find the "largest" elements, making the code scalable for longer articles.
 
   
