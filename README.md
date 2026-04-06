@@ -13,7 +13,9 @@ i)Stop-word Removal: Words like "the," "is," and "and" have high frequency but z
 
 2. Weighted Frequency Distribution
 The clmost important part of this summarizer is based on the Term Frequency (TF) principle.
+
 i) The Logic: In a specific text, the words that appear most often (excluding stop-words) are the best indicators of the topic.
+
 ii) Normalization: To prevent absolute counts from skewing results, the code normalizes frequencies:
 $\text{Normalized Weight}(w) = \frac{\text{Count of word } w}{\text{Count of the most frequent word in text}}$
 This ensures every word has a weight $W \in [0, 1]$.
