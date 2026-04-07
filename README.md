@@ -46,7 +46,7 @@ Vocabulary Storage $O(V)$: Memory usage scales with the unique vocabulary size $
 Score Mapping $O(S)$: Stores a numeric priority score for each sentence $S$ in the document.
 
 The "Heap" Mechanism 
-When we use $heapq.nlargest(K, sentence_scores)$, the algorithm doesn't just look at the list. It follows this high-efficiency process:
+When we use heapq.nlargest($$K$$, sentence_scores), the algorithm doesn't just look at the list. It follows this high-efficiency process:
 Heap Initialization $O(K)$: The algorithm takes the first $K$ sentences and builds a Min-Heap. In a Min-Heap, the smallest element of the top $K$ is always at the root (the "top" of the pile).
 Streaming Comparison $O(S \log K)$: For every remaining sentence in the document (the other $S-K$ sentences):
 It compares the new sentence's score to the Root (the smallest of the current top $K$).
