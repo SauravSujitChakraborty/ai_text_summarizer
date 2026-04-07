@@ -45,4 +45,14 @@ Selection $O(S \log K)$: Leverages a Priority Queue (via heapq.nlargest) to extr
 Vocabulary Storage $O(V)$: Memory usage scales with the unique vocabulary size $V$. As per Heaps' Law, $V$ grows significantly slower than the total word count $N$, ensuring a stable memory footprint.
 Score Mapping $O(S)$: Stores a numeric priority score for each sentence $S$ in the document.
 
+The "Heap" Mechanism 
+When we use $heapq.nlargest(K, sentence_scores)$, the algorithm doesn't just look at the list. It follows this high-efficiency process:
+Heap Initialization $O(K)$: The algorithm takes the first $K$ sentences and builds a Min-Heap. In a Min-Heap, the smallest element of the top $K$ is always at the root (the "top" of the pile).
+Streaming Comparison $O(S \log K)$: For every remaining sentence in the document (the other $S-K$ sentences):
+It compares the new sentence's score to the Root (the smallest of the current top $K$).
+If the new sentence is larger than the root, it kicks the root out and inserts the new sentence.
+
+Importance of Log: Re-adjusting the heap after an insertion takes $log K$ steps.
+
+Result: We are left with the $K$ largest elements, but you never spent time sorting the thousands of smaller, irrelevant sentences.
 ​
