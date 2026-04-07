@@ -38,11 +38,11 @@ Technical Walkthrough :- Complexity Analysis
 The summarizer is optimized for high-performance text processing with the following complexity profile:
 
 1. Time Complexity: $O(N + S \log K)$
-Preprocessing & Frequency Mapping ($O(N)$): Performs a linear scan of $N$ tokens. Utilizing a Hash Map (Python dict) ensures $O(1)$ average-case updates for word frequencies.
-Sentence Scoring ($O(N)$): Aggregates weights by iterating through the corpus a second time. A heuristic filter is applied to skip sentences >30 words, optimizing for information density.
-Selection ($O(S \log K)$): Leverages a Priority Queue (via heapq.nlargest) to extract the top $K$ sentences. This avoids the $O(S \log S)$ cost of a full sort, which is critical for low-latency processing of large document sets.
+Preprocessing & Frequency Mapping $O(N)$: Performs a linear scan of $N$ tokens. Utilizing a Hash Map (Python dict) ensures $O(1)$ average-case updates for word frequencies.
+Sentence Scoring $O(N)$: Aggregates weights by iterating through the corpus a second time. A heuristic filter is applied to skip sentences >30 words, optimizing for information density.
+Selection $O(S \log K)$: Leverages a Priority Queue (via heapq.nlargest) to extract the top $K$ sentences. This avoids the $O(S \log S)$ cost of a full sort, which is critical for low-latency processing of large document sets.
 2. Space Complexity: $O(V + S)$
-Vocabulary Storage ($O(V)$): Memory usage scales with the unique vocabulary size ($V$). As per Heaps' Law, $V$ grows significantly slower than the total word count $N$, ensuring a stable memory footprint.
-Score Mapping ($O(S)$): Stores a numeric priority score for each sentence $S$ in the document.
+Vocabulary Storage $O(V)$: Memory usage scales with the unique vocabulary size $V$. As per Heaps' Law, $V$ grows significantly slower than the total word count $N$, ensuring a stable memory footprint.
+Score Mapping $O(S)$: Stores a numeric priority score for each sentence $S$ in the document.
 
 ​
