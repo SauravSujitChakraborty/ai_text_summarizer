@@ -28,5 +28,3 @@ $\text{Score}(S) = \sum_{w \in S} \text{Normalized Weight}(w)$
 
 4. Selection via Priority Queue
 To extract the top N sentences without sorting the entire list (which is computationally expensive for large documents), the code uses a Heap Queue (heapq). This is an efficient $O(n/logk)$ operation to find the "largest" elements, making the code scalable for longer articles.
-
-  
