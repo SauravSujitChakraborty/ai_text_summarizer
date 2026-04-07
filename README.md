@@ -2,9 +2,9 @@
 
 NOTE :- This project was made by me during Nov 2025, preserved and finally uploaded on Apr 6,'26.
 
-Summarizes a piece of text information into smaller output
+==> Summarizes a piece of text information into smaller output
 
-The project follows a four-step pipeline: Preprocessing, Weighted Frequency Distribution, Sentence Scoring, and Heuristic Extraction.
+==> The project follows a four-step pipeline: Preprocessing, Weighted Frequency Distribution, Sentence Scoring, and Heuristic Extraction.
 
 1. Preprocessing & Noise Reduction
 Before the algorithm can "rank" importance, it must clean the data. My code uses Regular Expressions (Regex) to remove citations and extra whitespace.
