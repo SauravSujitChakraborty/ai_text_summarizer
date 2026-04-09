@@ -1,6 +1,6 @@
-# ai_text_summarizer
+# ai_text_summarizer 
 
-NOTE :- This project was made by me during Nov 2025, preserved and finally uploaded on Apr 6,'26. 
+NOTE :- This project was made by me during Nov'25, preserved and finally uploaded on Apr 6,'26. 
 
 ==> Summarizes a piece of text information into smaller output
 
