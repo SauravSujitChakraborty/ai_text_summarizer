@@ -56,7 +56,8 @@ Importance of Log: Re-adjusting the heap after an insertion takes $log K$ steps.
 
 Result: We are left with the $K$ largest elements, but you never spent time sorting the thousands of smaller, irrelevant sentences.
 ​
-Packages Required :-
+
+ Packages Required :-
 
 This project leverages state-of-the-art Natural Language Processing (NLP) libraries to handle deep learning tensors and transformer-based architectures.
 
