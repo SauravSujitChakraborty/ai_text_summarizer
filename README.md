@@ -31,30 +31,43 @@ To extract the top N sentences without sorting the entire list (which is computa
 
 Summary
 
-This project utilizes a Frequency-Weighted Extractive Algorithm. It maps the semantic importance of a document by calculating a normalized term-frequency distribution $\frac{f_i}{\max(f)}$. Sentences are then ranked as a function of their aggregate word-weights, providing a summary that maximizes information density while minimizing redundant linguistic noise.
+==> This project utilizes a Frequency-Weighted Extractive Algorithm. It maps the semantic importance of a document by calculating a normalized term-frequency distribution $\frac{f_i}{\max(f)}$. Sentences are then ranked as a function of their aggregate word-weights, providing a summary that maximizes information density while minimizing redundant linguistic noise.
 
 Technical Walkthrough :- Complexity Analysis
 
-The summarizer is optimized for high-performance text processing with the following complexity profile:
+==> The summarizer is optimized for high-performance text processing with the following complexity profile:
 
 1. Time Complexity: $O(N + S \log K)$
-Preprocessing & Frequency Mapping $O(N)$: Performs a linear scan of $N$ tokens. Utilizing a Hash Map (Python dict) ensures $O(1)$ average-case updates for word frequencies.
-Sentence Scoring $O(N)$: Aggregates weights by iterating through the corpus a second time. A heuristic filter is applied to skip sentences >30 words, optimizing for information density.
-Selection $O(S \log K)$: Leverages a Priority Queue (via heapq.nlargest) to extract the top $K$ sentences. This avoids the $O(S \log S)$ cost of a full sort, which is critical for low-latency processing of large document sets.
-2. Space Complexity: $O(V + S)$
-Vocabulary Storage $O(V)$: Memory usage scales with the unique vocabulary size $V$. As per Heaps' Law, $V$ grows significantly slower than the total word count $N$, ensuring a stable memory footprint.
-Score Mapping $O(S)$: Stores a numeric priority score for each sentence $S$ in the document.
+   
+==> Preprocessing & Frequency Mapping $O(N)$: Performs a linear scan of $N$ tokens. Utilizing a Hash Map (Python dict) ensures $O(1)$ average-case updates for word frequencies.
 
-The "Heap" Mechanism 
-When we use heapq.nlargest($$K$$, sentence_scores), the algorithm doesn't just look at the list. It follows this high-efficiency process:
-Heap Initialization $O(K)$: The algorithm takes the first $K$ sentences and builds a Min-Heap. In a Min-Heap, the smallest element of the top $K$ is always at the root (the "top" of the pile).
-Streaming Comparison $O(S \log K)$: For every remaining sentence in the document (the other $S-K$ sentences):
+==> Sentence Scoring $O(N)$: Aggregates weights by iterating through the corpus a second time. A heuristic filter is applied to skip sentences >30 words, optimizing for information density.
+
+==> Selection $O(S \log K)$: Leverages a Priority Queue (via heapq.nlargest) to extract the top $K$ sentences. This avoids the $O(S \log S)$ cost of a full sort, which is critical for low-latency processing of large document sets.
+
+2. Space Complexity: $O(V + S)$
+   
+==> Vocabulary Storage $O(V)$: Memory usage scales with the unique vocabulary size $V$. As per Heaps' Law, $V$ grows significantly slower than the total word count $N$, ensuring a stable memory footprint.
+
+==> Score Mapping $O(S)$: Stores a numeric priority score for each sentence $S$ in the document.
+
+3.The "Heap" Mechanism 
+
+==> When we use heapq.nlargest($$K$$, sentence_scores), the algorithm doesn't just look at the list. It follows this high-efficiency process:
+
+==> Heap Initialization $O(K)$: The algorithm takes the first $K$ sentences and builds a Min-Heap. In a Min-Heap, the smallest element of the top $K$ is always at the root (the "top" of the pile).
+
+==> Streaming Comparison $O(S \log K)$: For every remaining sentence in the document (the other $S-K$ sentences):
+
 It compares the new sentence's score to the Root (the smallest of the current top $K$).
+
 If the new sentence is larger than the root, it kicks the root out and inserts the new sentence.
 
-Importance of Log: Re-adjusting the heap after an insertion takes $log K$ steps.
+==> Importance of Log: Re-adjusting the heap after an insertion takes $log K$ steps.
 
-Result: We are left with the $K$ largest elements, but you never spent time sorting the thousands of smaller, irrelevant sentences.
+Result: 
+
+==> We are left with the $K$ largest elements, but you never spent time sorting the thousands of smaller, irrelevant sentences.
 ​
 
  Packages Required :-
