@@ -54,7 +54,7 @@ Technical Walkthrough (Complexity Analysis):
    
    > Sentence Scoring $O(N)$: Aggregates weights by iterating through the corpus a second time.
    
-   > Selection $O(S \log K)$:OF Leverages a Priority Queue (via `heapq.nlargest`) to extract the top $K$ sentences.
+   > Selection $O(S \log K)$: a Priority Queue (via `heapq.nlargest`) is leveraged to extract the top $K$ sentences.
 
 => Space Complexity: $O(V + S)$
    
