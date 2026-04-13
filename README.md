@@ -84,5 +84,5 @@ This project leverages state-of-the-art Natural Language Processing (NLP) librar
 
 Installation 
 
-pip install pandas numpy nltk
+pip install pandas numpy nltk 
 
