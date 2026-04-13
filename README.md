@@ -28,7 +28,7 @@ i)Stop-word Removal
    
         ==> To prevent absolute counts from skewing results, the code normalizes frequencies:
 
-           $$ \text{Normalized Weight}(w) = \frac{\text{Count of word } w}{\text{Count of the most frequent word in     text}} $$
+           $\text{Normalized Weight}(w) = \frac{\text{Count of word } w}{\text{Count of the most frequent word in text}}$
 
         ==> This ensures every word has a weight $W \in [0, 1]$.
 
