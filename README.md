@@ -81,3 +81,8 @@ This project leverages state-of-the-art Natural Language Processing (NLP) librar
 ==> SentencePiece: A sub-word tokenizer required for modern transformer models to handle vocabulary efficiently.
 
 ==> NLTK: Used for text pre-processing and sentence boundary detection to ensure clean input data.
+
+Installation 
+
+pip install pandas numpy nltk
+
