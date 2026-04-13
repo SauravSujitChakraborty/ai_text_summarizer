@@ -30,7 +30,7 @@ i)Stop-word Removal
 
 $$\text{Normalized Weight}(w) = \frac{\text{Count of word } w}{\text{Count of the most frequent word in text}}$$
 
-       > This ensures every word has a weight $W \in [0, 1]$.
+       > This ensures every word has a weight $\W \in [0, 1]$.
       
 3. Sentence Scoring Algorithm:
    
@@ -74,7 +74,7 @@ Technical Walkthrough (Complexity Analysis):
 
 => Importance of Log: 
 
-    > Re-adjusting the heap after an insertion takes $log K$ steps.
+    > Re-adjusting the heap after an insertion takes $\log K$ steps.
 
 Result: 
 
