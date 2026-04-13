@@ -19,18 +19,18 @@ i)Stop-word Removal
 2. Weighted Frequency Distribution:
    
   => The most important part of this summarizer is based on the Term Frequency (TF) principle.
+  
+  i) The Logic:
 
-     i) The Logic: 
-     
-       > In a specific text, the words that appear most often (excluding stop-words) are the best indicators of the topic.
-        
-      ii) Normalization:
-      
-         > To prevent absolute counts from skewing results, the code normalizes frequencies:
+> In a specific text, the words that appear most often (excluding stop-words) are the best indicators of the topic.
 
-         $$\text{Normalized Weight}(w) = \frac{\text{Count of word } w}{\text{Count of the most frequent word in text}}$$
-         
-        This ensures every word has a weight $W \in [0, 1]$.
+ii) Normalization:
+
+> To prevent absolute counts from skewing results, the code normalizes frequencies:
+
+$$\text{Normalized Weight}(w) = \frac{\text{Count of word } w}{\text{Count of the most frequent word in text}}$$
+
+This ensures every word has a weight $W \in [0, 1]$.
 
 3. Sentence Scoring Algorithm:
    
