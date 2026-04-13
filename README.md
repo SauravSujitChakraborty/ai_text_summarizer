@@ -6,7 +6,7 @@ NOTE :- This project was made by me during Nov'25, preserved and finally uploade
 
 Process 
 
-=> The project follows a four-step pipeline: Preprocessing, Weighted Frequency Distribution, Sentence Scoring, and Heuristic Extraction.
+==> The project follows a four-step pipeline: Preprocessing, Weighted Frequency Distribution, Sentence Scoring, and Heuristic Extraction.
 
 1. Preprocessing & Noise Reduction
    
@@ -22,15 +22,15 @@ i)Stop-word Removal
 
      i) The Logic: 
      
-        => In a specific text, the words that appear most often (excluding stop-words) are the best indicators of the topic.
+       > In a specific text, the words that appear most often (excluding stop-words) are the best indicators of the topic.
         
       ii) Normalization:
       
-        => To prevent absolute counts from skewing results, the code normalizes frequencies:
+       > To prevent absolute counts from skewing results, the code normalizes frequencies:
 
 $$\text{Normalized Weight}(w) = \frac{\text{Count of word } w}{\text{Count of the most frequent word in text}}$$
 
-          > This ensures every word has a weight $W \in [0, 1]$.
+       > This ensures every word has a weight $W \in [0, 1]$.
       
 3. Sentence Scoring Algorithm:
    
@@ -72,7 +72,7 @@ Technical Walkthrough (Complexity Analysis):
 
    > If the new sentence is larger than the root, it kicks the root out and inserts the new sentence.
 
-   => Importance of Log: 
+=> Importance of Log: 
 
     > Re-adjusting the heap after an insertion takes $log K$ steps.
 
