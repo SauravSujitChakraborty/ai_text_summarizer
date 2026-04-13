@@ -80,9 +80,11 @@ Result:
 
 => We are left with the $K$ largest elements, but we never spent time sorting the thousands of smaller, irrelevant sentences.
 ​
-Packages Required:
 
-=> This project leverages state-of-the-art Natural Language Processing (NLP) libraries to handle deep learning tensors and transformer-based architectures.
+ 
+ Packages Required:
+
+ => This project leverages state-of-the-art Natural Language Processing (NLP) libraries to handle deep learning tensors and transformer-based architectures.
 
   > Transformers: Provided by Hugging Face; used to implement pre-trained BART/T5 models for abstractive summarization.
 
