@@ -12,7 +12,7 @@ Process
    
   => Before the algorithm can 'rank' importance, it must clean the data. My code uses Regular Expressions (Regex) to remove citations and extra whitespace.
 
-i)Stop-word Removal
+i) Stop-word Removal
 
   => Words like 'the', 'is' and 'and' have high frequency but zero semantic value. By filtering these out using the NLTK library, the model ensures it only focuses on 'content word' (nouns, verbs, adjectives).
 
