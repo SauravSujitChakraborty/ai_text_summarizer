@@ -55,7 +55,7 @@ Technical Walkthrough :- Complexity Analysis
 
 ==> Score Mapping $O(S)$: Stores a numeric priority score for each sentence $S$ in the document.
 
-  3.The 'Heap' Mechanism 
+   3.The 'Heap' Mechanism 
 
 ==> When we use heapq.nlargest($$K$$, sentence_scores), the algorithm doesn't just look at the list. It follows this high-efficiency process:
 
