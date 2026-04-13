@@ -27,8 +27,8 @@ i)Stop-word Removal
      ii) Normalization: 
    
         ==> To prevent absolute counts from skewing results, the code normalizes frequencies:
-
-           $\text{Normalized Weight}(w) = \frac{\text{Count of word } w}{\text{Count of the most frequent word in text}}$
+        
+$$\text{Normalized Weight}(w) = \frac{\text{Count of word } w}{\text{Count of the most frequent word in text}}$$
 
         ==> This ensures every word has a weight $W \in [0, 1]$.
 
@@ -36,7 +36,7 @@ i)Stop-word Removal
    
   ==> ​The model treats each sentence as a 'container' of importance. The score of a sentence S is the sum of the normalized weights of its constituent words:
 
-   $\text{Score}(S) = \sum_{w \in S} \text{Normalized Weight}(w)$
+   $$\text{Score}(S) = \sum_{w \in S} \text{Normalized Weight}(w)$$
 
   ==> Important(Heuristic Constraint): I have included a length filter (len(sent.split(' ')) < 30). This is a 'Heuristic' to prevent the model from biasedly picking extremely long sentences just because they contain more words.
 
