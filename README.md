@@ -26,12 +26,11 @@ i)Stop-word Removal
         
       ii) Normalization:
       
-       > To prevent absolute counts from skewing results, the code normalizes frequencies:
+         > To prevent absolute counts from skewing results, the code normalizes frequencies:
+         $$\text{Normalized Weight}(w) = \frac{\text{Count of word } w}{\text{Count of the most frequent word in text}}$$
 
-$$\text{Normalized Weight}(w) = \frac{\text{Count of word } w}{\text{Count of the most frequent word in text}}$$
-
-       > This ensures every word has a weight $$W \in [0, 1]$$.
-      
+         > This ensures every word has a weight $W \in [0, 1]$.
+       
 3. Sentence Scoring Algorithm:
    
 => The model treats each sentence as a 'container' of importance. The score of a sentence $S$ is the sum of the normalized weights of its constituent words:
@@ -40,7 +39,7 @@ $$\text{Score}(S) = \sum_{w \in S} \text{Normalized Weight}(w)$$
 
 4. Selection via Priority Queue:
    
-=> To extract the top N sentences without sorting the entire list (which is computationally expensive for large documents), the code uses a Heap Queue (heapq). This is an efficient $O(n/logk)$ operation to find the 'largest' elements, making the code scalable for longer articles.
+=> To extract the top N sentences without sorting the entire list (which is computationally expensive for large documents), the code uses a Heap Queue (heapq). This is an efficient $O(N/logK)$ operation to find the 'largest' elements, making the code scalable for longer articles.
 
 Summary:
 
@@ -62,7 +61,7 @@ Technical Walkthrough (Complexity Analysis):
        
 => The 'Heap' Mechanism:
 
-   > When we use heapq.nlargest($$K$$, sentence_scores), the algorithm doesn't just look at the list. It follows this high-efficiency process:
+   > When we use heapq.nlargest($K$, sentence_scores), the algorithm doesn't just look at the list. It follows this high-efficiency process:
 
    > Heap Initialization $O(K)$: The algorithm takes the first $K$ sentences and builds a Min-Heap. In a Min-Heap, the smallest element of the top $K$ is always at the root (the "top" of the pile).
 
@@ -74,11 +73,11 @@ Technical Walkthrough (Complexity Analysis):
 
 => Importance of Log: 
 
-    > Re-adjusting the heap after an insertion takes $$log K$$ steps.
+    > Re-adjusting the heap after an insertion takes $\log K$ steps.
 
-Result: 
+Result:
 
-=> We are left with the $K$ largest elements, but you never spent time sorting the thousands of smaller, irrelevant sentences.
+=> We are left with the $K$ largest elements, but we never spent time sorting the thousands of smaller, irrelevant sentences.
 ​
 Packages Required:
 
