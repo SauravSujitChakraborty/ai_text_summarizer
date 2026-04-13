@@ -14,11 +14,11 @@ Process
 
 i) Stop-word Removal
 
-  => Words like 'the', 'is' and 'and' have high frequency but zero semantic value. By filtering these out using the NLTK library, the model ensures it only focuses on 'content word' (nouns, verbs, adjectives).
+  > Words like 'the', 'is' and 'and' have high frequency but zero semantic value. By filtering these out using the NLTK library, the model ensures it only focuses on 'content word' (nouns, verbs, adjectives).
 
 2. Weighted Frequency Distribution:
    
-  => The most important part of this summarizer is based on the Term Frequency (TF) principle.
+  > The most important part of this summarizer is based on the Term Frequency (TF) principle.
   
   i) The Logic:
 
