@@ -24,6 +24,14 @@ i)Stop-word Removal
      
         ==> In a specific text, the words that appear most often (excluding stop-words) are the best indicators of the topic.
         
+        **ii) Normalization:**
+To prevent absolute counts from skewing results, the code normalizes frequencies:
+
+$$\text{Normalized Weight}(w) = \frac{\text{Count of word } w}{\text{Count of the most frequent word in text}}$$
+
+This ensures every word has a weight $W \in [0, 1]$.
+
+       
         ii) Normalization:
             
             To prevent absolute counts from skewing results, the code normalizes frequencies:
@@ -40,6 +48,12 @@ i)Stop-word Removal
 $$\text{Normalized Weight}(w) = \frac{\text{Count of word } w}{\text{Count of the most frequent word in text}}$$
 
         ==> This ensures every word has a weight $W \in [0, 1]$.
+      
+**3. Sentence Scoring Algorithm:**
+The model treats each sentence as a 'container' of importance. The score of a sentence $S$ is the sum of the normalized weights of its constituent words:
+
+$$\text{Score}(S) = \sum_{w \in S} \text{Normalized Weight}(w)$$
+
 
 3. Sentence Scoring Algorithm:
    
@@ -63,6 +77,17 @@ $$\text{Normalized Weight}(w) = \frac{\text{Count of word } w}{\text{Count of th
 Summary:
 
 ==> This project utilizes a Frequency-Weighted Extractive Algorithm. It maps the semantic importance of a document by calculating a normalized term-frequency distribution $\frac{f_i}{\max(f)}$. Sentences are then ranked as a function of their aggregate word-weights, providing a summary that maximizes information density while minimizing redundant linguistic noise.
+
+### Technical Walkthrough (Complexity Analysis)
+
+1. **Time Complexity:** $O(N + S \log K)$
+   * **Preprocessing & Frequency Mapping $O(N)$:** Performs a linear scan of $N$ tokens. Using a Hash Map ensures $O(1)$ average-case updates.
+   * **Sentence Scoring $O(N)$:** Aggregates weights by iterating through the corpus a second time.
+   * **Selection $O(S \log K)$:** Leverages a Priority Queue (via `heapq.nlargest`) to extract the top $K$ sentences.
+
+2. **Space Complexity:** $O(V + S)$
+   * **Vocabulary Storage $O(V)$:** Memory usage scales with the unique vocabulary size $V$. As per **Heaps' Law**, $V$ grows significantly slower than the total word count $N$.
+   * 
 
 Technical Walkthrough (Complexity Analysis)
 
