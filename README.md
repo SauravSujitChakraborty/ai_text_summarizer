@@ -94,7 +94,13 @@ Result:
 
   > NLTK: Used for text pre-processing and sentence boundary detection to ensure clean input data.
 
-Installation:
+==> Cloning the repository:
+
+```bash
+git clone [https://github.com/SauravSujitChakraborty/ai_text_summarizer.git](https://github.com/SauravSujitChakraborty/ai_text_summarizer.git)
+```
+
+==> Installing the dependencies:
 
 ```bash
 pip install pandas numpy scikit-learn
