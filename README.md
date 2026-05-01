@@ -62,11 +62,7 @@ $$ Score(S) = \sum_{w \in S} Normalized\ Weight(w) $$
        
  ==> The 'Heap' Mechanism:
 
-  => When we use
-  
-$heapq.nlargest(K,\ sentence\\\_scores)$
-
-the algorithm doesn't just look at the list. It follows this high-efficiency process:
+  => When we use $heapq.nlargest(K,\ sentence\\\_scores)$ the algorithm doesn't just look at the list. It follows this high-efficiency process:
 
   => Heap Initialization $O(K)$: The algorithm takes the first $K$ sentences and builds a Min-Heap. In a Min-Heap, the smallest element of the top $K$ is always at the root (the "top" of the pile).
 
