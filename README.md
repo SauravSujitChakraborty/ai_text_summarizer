@@ -2,102 +2,108 @@
 
 NOTE :- This project was made by me during Nov'25, preserved and finally uploaded in Apr 6,'26. 
 
-=> Summarizes a piece of text information into smaller output
+==> Summarizes a piece of text information into smaller output
 
-Process 
+==> Process 
 
-==> The project follows a four-step pipeline: Preprocessing, Weighted Frequency Distribution, Sentence Scoring, and Heuristic Extraction.
+ => The project follows a four-step pipeline: Preprocessing, Weighted Frequency Distribution, Sentence Scoring, and Heuristic Extraction.
 
-1. Preprocessing & Noise Reduction
+==> Preprocessing & Noise Reduction
    
-  => Before the algorithm can 'rank' importance, it must clean the data. My code uses Regular Expressions (Regex) to remove citations and extra whitespace.
+ => Before the algorithm can 'rank' importance, it must clean the data. My code uses Regular Expressions (Regex) to remove citations and extra whitespace.
 
-i) Stop-word Removal
+ => Stop-word Removal
 
   > Words like 'the', 'is' and 'and' have high frequency but zero semantic value. By filtering these out using the NLTK library, the model ensures it only focuses on 'content word' (nouns, verbs, adjectives).
 
-2. Weighted Frequency Distribution:
+ => Weighted Frequency Distribution:
    
   > The most important part of this summarizer is based on the Term Frequency (TF) principle.
   
-  i) The Logic:
+ => The Logic:
 
-> In a specific text, the words that appear most often (excluding stop-words) are the best indicators of the topic.
+  > In a specific text, the words that appear most often (excluding stop-words) are the best indicators of the topic.
 
-ii) Normalization:
+ => Normalization:
 
-> To prevent absolute counts from skewing results, the code normalizes frequencies:
+  > To prevent absolute counts from skewing results, the code normalizes frequencies:
 
-$$\text{Normalized Weight}(w) = \frac{\text{Count of word } w}{\text{Count of the most frequent word in text}}$$
+$$ Normalized\ Weight(w) = \frac{Count\ of\ word\ w}{Count\ of\ the\ most\ frequent\ word\ in\ text} $$
 
-This ensures every word has a weight $W \in [0, 1]$.
+  > This ensures every word has a weight $W \in [0, 1]$.
 
-3. Sentence Scoring Algorithm:
+ => Sentence Scoring Algorithm:
    
-=> The model treats each sentence as a 'container' of importance. The score of a sentence $S$ is the sum of the normalized weights of its constituent words:
+  > The model treats each sentence as a 'container' of importance. The score of a sentence $S$ is the sum of the normalized weights of its constituent words:
 
-$$\text{Score}(S) = \sum_{w \in S} \text{Normalized Weight}(w)$$
+$$ Score(S) = \sum_{w \in S} Normalized\ Weight(w) $$
 
-4. Selection via Priority Queue:
+ => Selection via Priority Queue:
    
-=> To extract the top N sentences without sorting the entire list (which is computationally expensive for large documents), the code uses a Heap Queue (heapq). This is an efficient $O(N/logK)$ operation to find the 'largest' elements, making the code scalable for longer articles.
+  > To extract the top $N$ sentences without sorting the entire list (which is computationally expensive for large documents), the code uses a Heap Queue ($heapq$). This is an efficient $O(N/logK)$ operation to find the 'largest' elements, making the code scalable for longer articles.
 
-Summary:
+==> Summary:
 
-=> This project utilizes a Frequency-Weighted Extractive Algorithm. It maps the semantic importance of a document by calculating a normalized term-frequency distribution $\frac{f_i}{\max(f)}$. Sentences are then ranked as a function of their aggregate word-weights, providing a summary that maximizes information density while minimizing redundant linguistic noise.
+ => This project utilizes a Frequency-Weighted Extractive Algorithm. It maps the semantic importance of a document by calculating a normalized term-frequency distribution $\frac{f_i}{\max(f)}$. Sentences are then ranked as a function of their aggregate word-weights, providing a summary that maximizes information density while minimizing redundant linguistic noise.
 
-Technical Walkthrough (Complexity Analysis):
+==> Technical Walkthrough (Complexity Analysis):
 
-=> Time Complexity: $O(N + S \log K)$
- 
+**=> Time Complexity: $O(N + S log K)$**
+
    > Preprocessing & Frequency Mapping $O(N)$: Performs a linear scan of $N$ tokens. Using a Hash Map ensures $O(1)$ average-case updates.
    
-   > Sentence Scoring $O(N)$: Aggregates weights by iterating through the corpus a second time.
+   => Sentence Scoring $O(N)$: Aggregates weights by iterating through the corpus a second time.
    
-   > Selection $O(S \log K)$: a Priority Queue (via `heapq.nlargest`) is leveraged to extract the top $K$ sentences.
+ **=> Selection:** $O(S log K)$: a Priority Queue (via $heapq.nlargest$) is leveraged to extract the top $K$ sentences.
 
-=> Space Complexity: $O(V + S)$
+**=> Space Complexity: $O(V + S)$**
    
-  > Vocabulary Storage $O(V)$: Memory usage scales with the unique vocabulary size $V$. As per Heap's Law, $V$ grows significantly slower than the total word count $N$.
+   => Vocabulary Storage $O(V)$: Memory usage scales with the unique vocabulary size $V$. As per Heap's Law, $V$ grows significantly slower than the total word count $N$.
        
-=> The 'Heap' Mechanism:
+ ==> The 'Heap' Mechanism:
 
-   > When we use heapq.nlargest($K$, sentence_scores), the algorithm doesn't just look at the list. It follows this high-efficiency process:
+  => When we use
+  
+$heapq.nlargest(K,\ sentence\\\_scores)$
 
-   > Heap Initialization $O(K)$: The algorithm takes the first $K$ sentences and builds a Min-Heap. In a Min-Heap, the smallest element of the top $K$ is always at the root (the "top" of the pile).
+the algorithm doesn't just look at the list. It follows this high-efficiency process:
 
- => Streaming Comparison $O(S \log K)$: For every remaining sentence in the document (the other $S-K$ sentences):
+  => Heap Initialization $O(K)$: The algorithm takes the first $K$ sentences and builds a Min-Heap. In a Min-Heap, the smallest element of the top $K$ is always at the root (the "top" of the pile).
 
-   > It compares the new sentence's score to the Root (the smallest of the current top $K$).
+**==> Streaming Comparison:** $O(S log K)$ :  
+  
+  => For every remaining sentence in the document (the other $S-K$ sentences):
 
-   > If the new sentence is larger than the root, it kicks the root out and inserts the new sentence.
+  => It compares the new sentence's score to the Root (the smallest of the current top $K$).
 
-=> Importance of Log: 
+  => If the new sentence is larger than the root, it kicks the root out and inserts the new sentence.
 
-   > Re-adjusting the heap after an insertion takes $\log K$ steps.
+ ==> Importance of Log: 
 
-Result:
+  => Re-adjusting the heap after an insertion takes $log K$ steps.
 
-=> We are left with the $K$ largest elements, but we never spent time sorting the thousands of smaller, irrelevant sentences.
+==> Result:
+
+ => We are left with the $K$ largest elements, but we never spent time sorting the thousands of smaller, irrelevant sentences.
 ​
-
- 
- Packages Required:
+==> Packages Required:
 
  => This project leverages state-of-the-art Natural Language Processing (NLP) libraries to handle deep learning tensors and transformer-based architectures.
 
-  > Transformers: Provided by Hugging Face; used to implement pre-trained BART/T5 models for abstractive summarization.
+ => Transformers: Provided by Hugging Face; used to implement pre-trained BART/T5 models for abstractive summarization.
 
-  > PyTorch: Acts as the deep learning backend for tensor computations and GPU acceleration (CUDA).
+ => PyTorch: Acts as the deep learning backend for tensor computations and GPU acceleration (CUDA).
 
-  > SentencePiece: A sub-word tokenizer required for modern transformer models to handle vocabulary efficiently.
+ => SentencePiece: A sub-word tokenizer required for modern transformer models to handle vocabulary efficiently.
 
-  > NLTK: Used for text pre-processing and sentence boundary detection to ensure clean input data.
+ => NLTK: Used for text pre-processing and sentence boundary detection to ensure clean input data.
+
+ Installation & Cloning
 
 ==> Cloning the repository:
 
 ```bash
-git clone [https://github.com/SauravSujitChakraborty/ai_text_summarizer.git](https://github.com/SauravSujitChakraborty/ai_text_summarizer.git)
+git clone https://github.com/SauravSujitChakraborty/ai_text_summarizer.git
 ```
 
 ==> Installing the dependencies:
