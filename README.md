@@ -99,14 +99,37 @@ $$ Score(S) = \sum_{w \in S} Normalized\ Weight(w) $$
 ==> Cloning the repository:
 
 ```bash
-git clone https://github.com/SauravSujitChakraborty/ai_text_summarizer.git
-```
 
+git clone https://github.com/SauravSujitChakraborty/ai_text_summarizer.git && cd ai_text_summarizer
+
+```
+==> Create and activate environment
+
+```bash
+
+python -m venv venv
+
+# On macOS/Linux:
+
+source venv/bin/activate  
+
+# On Windows:
+
+venv\Scripts\activate
+
+```
 ==> Installing the dependencies:
 
 ```bash
-pip install pandas numpy scikit-learn
+
+pip install -r requirements.txt
+
 ```
+==> Running the Summarizer:
 
+```bash
 
+python ai_text_summarizer.py
+
+```
 
