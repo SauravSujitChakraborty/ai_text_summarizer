@@ -94,16 +94,16 @@ $$ Score(S) = \sum_{w \in S} Normalized\ Weight(w) $$
 
  => NLTK: Used for text pre-processing and sentence boundary detection to ensure clean input data.
 
-=> Installation & Cloning
+==> Installation & Cloning
 
- > Cloning the repository:
+ => Cloning the repository:
 
 ```bash
 
 git clone https://github.com/SauravSujitChakraborty/ai_text_summarizer.git && cd ai_text_summarizer
 
 ```
-==> Create and activate environment
+ => Create and activate environment
 
 ```bash
 
@@ -118,14 +118,14 @@ source venv/bin/activate
 venv\Scripts\activate
 
 ```
-> Installing the dependencies:
+=> Installing the dependencies:
 
 ```bash
 
 pip install -r requirements.txt
 
 ```
-> Running the Summarizer:
+=> Running the Summarizer:
 
 ```bash
 
